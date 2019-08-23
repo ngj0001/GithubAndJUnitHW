@@ -1,43 +1,52 @@
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class JUnitTest<source, target> {
+public class JUnitTest{
 
 
 
-    public class JUnitAnnotationExample {
-        // Run once, e.g. Database connection, connection pool
-        @BeforeClass
-       /* public static void runOnceBeforeClass() {
-            System.out.println("@BeforeClass - runOnceBeforeClass");
-        }*/
 
-        // Run once, e.g close connection, cleanup
-        @AfterClass
-        //public static void runOnceAfterClass() {
-          //  System.out.println("@AfterClass - runOnceAfterClass");
-        //}
+    @Test
+    public void maxFull() {
+        int[] array = new int[] {5, 25, 50, 75, 125, 150, 30};
+        int max = Finder.max(array);
+        Assert.assertEquals(150, max);
 
-        // Should rename to @BeforeTestMethod
-        // e.g. Creating an similar object and share for all @Test
-        @Before
-        public void runBeforeTestMethod() {
-            System.out.println("@Before - runBeforeTestMethod");
-        }
-
-        // Should rename to @AfterTestMethod
-        @After
-        public void runAfterTestMethod() {
-            System.out.println("@After - runAfterTestMethod");
-        }
-
-        @Test
-        public void test_method_1() {
-            System.out.println("@Test - test_method_1");
-        }
-
-        @Test
-        public void test_method_2() {
-            System.out.println("@Test - test_method_2");
-        }
     }
+    @Test
+    public void minFull() {
+        int[] array = new int[] {5, 25, 50, 75, 125, 150, 30};
+        int min = Finder.min(array);
+        Assert.assertEquals(5, min);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void maxEmpty() {
+        int[] intArray = new int[]{};
+        int max = Finder.max(intArray);
+        Assert.assertEquals(intArray, max);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void minEmpty() {
+        int[] intArray = new int[]{};
+        int min = Finder.min(intArray);
+        Assert.assertEquals(intArray, min);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void maxNull() {
+        int[] intArray = null;
+        int max = Finder.max(intArray);
+        Assert.assertNull(null, max);
+
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void minNull() {
+        int[] intArray = null;
+        int min = Finder.min(intArray);
+        Assert.assertNull(null, min);
+
+    }
+
+
 }
